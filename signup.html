@@ -1,56 +1,109 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sign up — Linux Security Update</title>
-  <link rel="stylesheet" href="assets/styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up — Linux Security Update</title>
+    <!-- Your existing styles here -->
 </head>
 <body>
-  <header class="topbar">
-    <div class="container topbar__row">
-      <a class="brand" href="./"><span class="brand__logo">🛡️</span><span class="brand__text">Linux Security Update</span></a>
-      <nav class="nav"><a href="./">Download</a><a class="btn btn--ghost" href="login.html">Sign in</a></nav>
-    </div>
-  </header>
-
-  <main class="section">
-    <div class="container" style="max-width:520px">
-      <div class="card">
-        <h2>Create an account</h2>
-        <p class="muted small">
-          This page is a placeholder UI. For real accounts, use OAuth (GitHub/Google) via Auth0/Firebase so you never handle passwords.
-        </p>
-
-        <form onsubmit="event.preventDefault(); alert('Demo UI only. No credentials are collected or stored.');">
-          <label class="small muted">Name</label>
-          <input required type="text" placeholder="Full name" style="width:100%;margin:6px 0 12px;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.25);color:#fff;">
-          <label class="small muted">Email</label>
-          <input required type="email" placeholder="you@example.com" style="width:100%;margin:6px 0 12px;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.25);color:#fff;">
-          <label class="small muted">Password</label>
-          <input required type="password" placeholder="••••••••" style="width:100%;margin:6px 0 14px;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.25);color:#fff;">
-          <button class="btn btn--primary btn--lg" type="submit">Sign up (demo)</button>
-        </form>
-
-        <div class="divider"></div>
-
-        <div class="panel">
-          <button class="btn btn--primary btn--lg" type="button" onclick="alert('Connect an OAuth provider (Auth0/Firebase) to enable real sign-up.')">
-            Sign up with GitHub (recommended)
-          </button>
+    <!-- Your existing HTML structure -->
+    
+    <form id="signupForm">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="name" required>
         </div>
+        
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email" required>
+        </div>
+        
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="password" required>
+        </div>
+        
+        <div id="errorMessage" style="color: red; display: none;"></div>
+        <div id="successMessage" style="color: green; display: none;"></div>
+        
+        <button type="submit">Sign up</button>
+    </form>
 
-      </div>
-    </div>
-  </main>
+    <!-- ADD THIS FIREBASE CODE AT THE END, BEFORE </body> -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
-  <footer class="footer">
-    <div class="container footer__row">
-      <div class="muted small">© <span id="year"></span> Linux Security Update</div>
-      <div class="footer__links"><a href="./">Download</a></div>
-    </div>
-  </footer>
+        // ⚠️ REPLACE THIS WITH YOUR FIREBASE CONFIG FROM FIREBASE CONSOLE
+        const firebaseConfig = {
+            apiKey: "AIzaSyDQHzZdUU3xtmmr2uB3FRoEfoR4GQNrvXQ",
+            authDomain: "phase3-15c78.firebaseapp.com",
+            projectId: "phase3-15c78",
+            storageBucket: "phase3-15c78.firebasestorage.app",
+            messagingSenderId: "938674937288",
+            appId: "1:938674937288:web:9ac26dbc81defb249e34fd",
+            measurementId: "G-B04CHWKFS9"
+        };
 
-  <script src="assets/app.js"></script>
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Handle form submission
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            const errorDiv = document.getElementById('errorMessage');
+            const successDiv = document.getElementById('successMessage');
+            
+            // Hide previous messages
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+            
+            try {
+                // Create user account
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                
+                // Update user profile with name
+                await updateProfile(userCredential.user, {
+                    displayName: name
+                });
+                
+                // Show success message
+                successDiv.textContent = 'Account created successfully! Redirecting...';
+                successDiv.style.display = 'block';
+                
+                // Redirect to login or dashboard after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'login.html'; // or wherever you want
+                }, 2000);
+                
+            } catch (error) {
+                // Show error message
+                let errorMessage = '';
+                switch(error.code) {
+                    case 'auth/email-already-in-use':
+                        errorMessage = 'This email is already registered.';
+                        break;
+                    case 'auth/weak-password':
+                        errorMessage = 'Password should be at least 6 characters.';
+                        break;
+                    case 'auth/invalid-email':
+                        errorMessage = 'Invalid email address.';
+                        break;
+                    default:
+                        errorMessage = error.message;
+                }
+                errorDiv.textContent = errorMessage;
+                errorDiv.style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>
