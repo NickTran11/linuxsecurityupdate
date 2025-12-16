@@ -3,40 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign up — Linux Security Update</title>
-    <!-- Your existing styles here -->
+    <title>Sign Up — Linux Security Update</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background: #111;
+            border-bottom: 1px solid #222;
+            padding: 1rem 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 1rem;
+        }
+
+        .container {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 3rem 2.5rem;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            color: #ccc;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: #fff;
+            transition: all 0.2s;
+        }
+
+        input::placeholder {
+            color: #666;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #555;
+            background: #222;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.85rem;
+            background: #fff;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        button:hover {
+            background: #f0f0f0;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .message {
+            padding: 0.85rem 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .error {
+            background: #2a1515;
+            border: 1px solid #4a2020;
+            color: #ff6b6b;
+        }
+
+        .success {
+            background: #152a15;
+            border: 1px solid #204a20;
+            color: #51cf66;
+        }
+
+        .switch-form {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .switch-form a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 0.3rem;
+        }
+
+        .switch-form a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            border-top: 1px solid #222;
+            padding: 2rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #888;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
-    <!-- Your existing HTML structure -->
-    
-    <form id="signupForm">
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" id="name" required>
-        </div>
-        
-        <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="email" required>
-        </div>
-        
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" id="password" required>
-        </div>
-        
-        <div id="errorMessage" style="color: red; display: none;"></div>
-        <div id="successMessage" style="color: green; display: none;"></div>
-        
-        <button type="submit">Sign up</button>
-    </form>
+    <header>
+        <nav>
+            <a href="./" class="logo">
+                🛡️ Linux Security Update
+            </a>
+            <div class="nav-links">
+                <a href="./#features">Features</a>
+                <a href="./#verify">Verify</a>
+                <a href="./#docs">Docs</a>
+                <a href="login.html">Sign in</a>
+            </div>
+        </nav>
+    </header>
 
-    <!-- ADD THIS FIREBASE CODE AT THE END, BEFORE </body> -->
+    <main>
+        <div class="container">
+            <h1>Create an account</h1>
+            <p class="subtitle">Join Linux Security Update</p>
+
+            <div id="errorMessage" class="message error"></div>
+            <div id="successMessage" class="message success"></div>
+
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="you@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="At least 6 characters" required>
+                </div>
+
+                <button type="submit" id="signupBtn">Sign up</button>
+            </form>
+
+            <div class="switch-form">
+                Already have an account?<a href="login.html">Sign in</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        © Linux Security Update
+        <br>
+        <a href="login.html">Sign in</a>
+        <a href="signup.html">Sign up</a>
+    </footer>
+
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
         import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
-        // ⚠️ REPLACE THIS WITH YOUR FIREBASE CONFIG FROM FIREBASE CONSOLE
+        // ⚠️ REPLACE WITH YOUR FIREBASE CONFIG
         const firebaseConfig = {
             apiKey: "AIzaSyDQHzZdUU3xtmmr2uB3FRoEfoR4GQNrvXQ",
             authDomain: "phase3-15c78.firebaseapp.com",
@@ -47,52 +285,49 @@
             measurementId: "G-B04CHWKFS9"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Handle form submission
-        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+        const form = document.getElementById('signupForm');
+        const errorDiv = document.getElementById('errorMessage');
+        const successDiv = document.getElementById('successMessage');
+        const submitBtn = document.getElementById('signupBtn');
+
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
             
-            const errorDiv = document.getElementById('errorMessage');
-            const successDiv = document.getElementById('successMessage');
-            
-            // Hide previous messages
             errorDiv.style.display = 'none';
             successDiv.style.display = 'none';
             
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Creating account...';
+            
             try {
-                // Create user account
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 
-                // Update user profile with name
                 await updateProfile(userCredential.user, {
                     displayName: name
                 });
                 
-                // Show success message
                 successDiv.textContent = 'Account created successfully! Redirecting...';
                 successDiv.style.display = 'block';
                 
-                // Redirect to login or dashboard after 2 seconds
                 setTimeout(() => {
-                    window.location.href = 'login.html'; // or wherever you want
+                    window.location.href = 'login.html';
                 }, 2000);
                 
             } catch (error) {
-                // Show error message
                 let errorMessage = '';
                 switch(error.code) {
                     case 'auth/email-already-in-use':
                         errorMessage = 'This email is already registered.';
                         break;
                     case 'auth/weak-password':
-                        errorMessage = 'Password should be at least 6 characters.';
+                        errorMessage = 'Password must be at least 6 characters.';
                         break;
                     case 'auth/invalid-email':
                         errorMessage = 'Invalid email address.';
@@ -102,6 +337,9 @@
                 }
                 errorDiv.textContent = errorMessage;
                 errorDiv.style.display = 'block';
+                
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Sign up';
             }
         });
     </script>
