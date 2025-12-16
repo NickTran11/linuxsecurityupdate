@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Linux Security Update — Download</title>
+  <meta name="description" content="Download linuxsecurityupdate.py — a class-based SSH setup & hardening helper for Kali Linux." />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__row">
+      <a class="brand" href="./">
+        <span class="brand__logo">🛡️</span>
+        <span class="brand__text">Linux Security Update</span>
+      </a>
+      <nav class="nav">
+        <a href="#features">Features</a>
+        <a href="#verify">Verify</a>
+        <a href="#docs">Docs</a>
+        <a class="btn btn--ghost" href="login.html">Sign in</a>
+        <a class="btn btn--primary" href="signup.html">Sign up</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__grid">
+        <div>
+          <p class="badge">Stable release</p>
+          <h1>Download <span class="muted">linuxsecurityupdate.py</span></h1>
+          <p class="lead">
+            A menu-driven SSH user + service setup tool for Kali Linux with config backup and basic firewall support.
+          </p>
+
+          <div class="cta">
+            <a class="btn btn--primary btn--lg" id="downloadBtn" href="downloads/linuxsecurityupdate.py" download>
+              Download linuxsecurityupdate.py
+            </a>
+            <button class="btn btn--ghost btn--lg" id="copyLinkBtn" type="button">
+              Copy download link
+            </button>
+          </div>
+
+          <div class="meta">
+            <div><strong>Version:</strong> <span id="ver">v1.0.0</span></div>
+            <div><strong>Updated:</strong> <span id="date">2025-12-15</span></div>
+            <div><strong>SHA256:</strong> <code id="sha">add-your-sha256-here</code></div>
+            <div><strong>Size:</strong> <span id="size">—</span></div>
+          </div>
+
+          <div class="quick">
+            <h3>Quick install</h3>
+            <div class="codebox">
+              <pre><code># Option A: Download from this site
+curl -L -o linuxsecurityupdate.py "$(python3 -c 'print("YOUR_PAGES_URL/downloads/linuxsecurityupdate.py")')"
+
+# Run
+sudo python3 linuxsecurityupdate.py</code></pre>
+              <button class="copy" data-copy="#quickCmd">Copy</button>
+            </div>
+            <textarea id="quickCmd" class="sr-only" aria-hidden="true">
+curl -L -o linuxsecurityupdate.py "YOUR_PAGES_URL/downloads/linuxsecurityupdate.py"
+sudo python3 linuxsecurityupdate.py
+            </textarea>
+            <p class="note">Replace <code>YOUR_PAGES_URL</code> with your GitHub Pages URL.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>What you get</h2>
+          <ul class="list">
+            <li>Creates a Linux user and sets a password</li>
+            <li>Installs & enables OpenSSH server</li>
+            <li>Backs up and updates <code>/etc/ssh/sshd_config</code></li>
+            <li>Disables root SSH login (PermitRootLogin no)</li>
+            <li>Optional UFW rule for OpenSSH</li>
+          </ul>
+
+          <div class="divider"></div>
+
+          <h3>Safety reminders</h3>
+          <p class="small muted">
+            This script modifies system configuration and requires root. Review the code before running.
+            Don’t hardcode real credentials in production.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2>Features</h2>
+        <div class="grid3">
+          <div class="panel">
+            <h3>Config backup</h3>
+            <p>Creates a timestamped backup of <code>sshd_config</code> before changes.</p>
+          </div>
+          <div class="panel">
+            <h3>Menu-driven</h3>
+            <p>Simple CLI menu: run all steps or exit.</p>
+          </div>
+          <div class="panel">
+            <h3>Transparent</h3>
+            <p>Uses standard tools (<code>apt</code>, <code>systemctl</code>, <code>ufw</code>).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="verify" class="section section--alt">
+      <div class="container">
+        <h2>Verify the download</h2>
+        <p class="muted">Compare the file hash with the published SHA256 above.</p>
+        <div class="codebox">
+          <pre><code>sha256sum linuxsecurityupdate.py</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="docs" class="section">
+      <div class="container">
+        <h2>Documentation</h2>
+        <div class="panel">
+          <ol class="steps">
+            <li>Download the file.</li>
+            <li>Open it and review the username/password values.</li>
+            <li>Run: <code>sudo python3 linuxsecurityupdate.py</code></li>
+            <li>Select <strong>Run all steps</strong>.</li>
+          </ol>
+          <p class="small muted">
+            Tip: for a real product, change the script to prompt for credentials instead of hardcoding them.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__row">
+      <div class="muted small">© <span id="year"></span> Linux Security Update</div>
+      <div class="footer__links">
+        <a href="login.html">Sign in</a>
+        <a href="signup.html">Sign up</a>
+        <a href="https://github.com/" target="_blank" rel="noreferrer">Source</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
