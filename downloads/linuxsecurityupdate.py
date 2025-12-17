@@ -1,4 +1,3 @@
-Nano linuxsecurityupdate.py
 #!/usr/bin/env python3
 """
 kali_ssh_manager.py
